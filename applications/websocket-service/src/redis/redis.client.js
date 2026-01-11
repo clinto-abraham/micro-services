@@ -14,7 +14,7 @@ function buildOptions(extra = {}) {
     port: Number(env.REDIS_PORT),
     username: env.REDIS_USERNAME || undefined,
     password: env.REDIS_PASSWORD || undefined,
-    db: Number(env.REDIS_DB) || 0,
+    db: Number(env.REDIS_DB) || 11,
 
     // 🔁 Reconnection strategy
     retryStrategy(times) {

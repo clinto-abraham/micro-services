@@ -85,3 +85,13 @@ pm2 start ecosystem.config.js --only websocket-service --env production
 pm2 start ecosystem.config.js --only cron-service --env production
 pm2 start ecosystem.config.js --only payment-service --env production
 pm2 start ecosystem.config.js --only mail-service --env production
+
+
+api-gateway
+sql-service
+mongo-service
+ai-service
+websocket-service
+cron-service
+payment-service
+mail-service

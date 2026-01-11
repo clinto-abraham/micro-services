@@ -2,10 +2,9 @@
 
 const router = require("express").Router();
 const proxy = require("../proxy/proxy");
+const { healthCheck} = require("../controllers/health.controller");
 
-router.get("/health", (req, res) => {
-  res.json({ status: "UP", service: "api-gateway" });
-});
+router.get("/health", healthCheck);
 
 router.use("/sql-service", proxy("sql-service"));
 router.use("/mongo-service", proxy("mongo-service"));

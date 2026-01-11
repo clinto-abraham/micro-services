@@ -1,5 +1,9 @@
-const createRedisClient = require("./redis.config");
+"use strict";
+const { initRedis } = require("../redis/redis.client");
+
+const { queue } = initRedis();
 
 module.exports = {
-  connection: createRedisClient
+  connection: queue
 };
+
