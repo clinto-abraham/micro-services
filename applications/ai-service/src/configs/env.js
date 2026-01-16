@@ -16,8 +16,6 @@ dotenv.config({
 
 const PORT = process.env.PORT || 3000;
 const SERVICE_NAME   = process.env.SERVICE_NAME || "ai-service"
-const SQL_SERVICE_BASE_URL = process.env.SQL_SERVICE_BASE_URL || "http://localhost:3000/postgres"
-const MONGO_SERVICE_BASE_URL = process.env.MONGO_SERVICE_BASE_URL || "http://localhost:4000/mongodb"
 
 // # ----------------------------------
 // # Database
@@ -53,7 +51,7 @@ const RATE_LIMIT_WINDOW  = process.env.RATE_LIMIT_WINDOW || "15"
 // # ----------------------------------
 // # REDIS 
 // # ----------------------------------
-console.log(56, process.env.REDIS_PASSWORD || undefined, 56, process.env.REDIS_PASSWORD)
+
 const REDIS_HOST = process.env.REDIS_HOST || "127.0.0.1";
 const REDIS_PORT =  Number(process.env.REDIS_PORT) || 6379;
 const REDIS_PASSWORD = process.env.REDIS_PASSWORD || undefined;
@@ -71,8 +69,19 @@ const CRON_MICROSERVICE_URL=process.env.CRON_MICROSERVICE_URL || "http://localho
 const PAYMENT_SERVICE_URL=process.env.PAYMENT_SERVICE_URL || "http://localhost:8000"
 const MAIL_SERVICE_URL=process.env.MAIL_SERVICE_URL || "http://localhost:9000"
 
-console.log(`✅ Loaded env file: ${envFile}`, SERVICE_NAME,  PORT,NODE_ENV);
+console.log(`
+🚀 Service Bootstrapped Successfully
+────────────────────────────────────
+🔹 Service Name   : ${SERVICE_NAME}
+🔹 Environment    : ${NODE_ENV}
+🔹 Port           : ${PORT}
+🔹 Env File       : ${envFile}
+🔹 PID            : ${process.pid}
+🔹 Timestamp      : ${new Date().toISOString()}
+────────────────────────────────────
+`);
 
+console.log("🔑 GEMINI KEY PRESENT:", !!process.env.GEMINI_API_KEY);
 
 module.exports = {
   NODE_ENV,
@@ -103,7 +112,8 @@ module.exports = {
   REDIS_PASSWORD,
   REDIS_DB,
   INTERNAL_JWT_SECRET,
-  OPENAI_API_KEY
+  OPENAI_API_KEY,
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY,
 };
 
 

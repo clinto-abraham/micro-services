@@ -4,6 +4,7 @@ const routes = require("./routes");
 const createRedisClient = require("./configs/redis.config");
 
 const cron = require('node-cron');
+const axios = require("./utils/axios");
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ createRedisClient();
 cron.schedule("0 */12 * * *", async () => {
   try {
     console.log("[cron] warming seats cache");
-    await axios.get(`${GATEWAY}/seats`, { timeout: 10000 });
+    await axios.get(`${process.env.SQL_MICROSERVICE_URL}/seats`, { timeout: 10000 });
   } catch (e) {
     console.error("[cron] warm error:", e.message);
   }

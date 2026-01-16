@@ -16,16 +16,11 @@ security(app);
 // Database connection
 connectMongo();
 
-// Routes
-app.use("/mongo", routes);
-
 // Final error handler
 app.use(errorHandler);
 
-app.use("/mongo", routes);
+app.locals.serviceStartTime = Date.now();
 
-app.get("/health", (_, res) =>
-  res.json({ ok: true, service: "mongo-service" })
-);
+app.use("/mongo", routes);
 
 module.exports = app;

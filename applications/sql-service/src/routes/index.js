@@ -4,7 +4,9 @@ const auth = require("../middlewares/auth.middleware");
 
 const userController = require("../controllers/user.controller");
 const userValidation = require("../validations/user.validation");
-const healthController = require("../controllers/health.controller");
+const { healthCheck } = require("../controllers/health.controller");
+const healthAuth = require("../middlewares/healthAuth");
+const healthRateLimit = require("../middlewares/healthRateLimit");
 
 const router = express.Router();
 
@@ -13,7 +15,7 @@ const router = express.Router();
  * Health Check (LB / Gateway)
  * ---------------------------
  */
-router.get("/health", healthController.health);
+router.get("/health", healthAuth, healthRateLimit, healthCheck);
 
 
 /**

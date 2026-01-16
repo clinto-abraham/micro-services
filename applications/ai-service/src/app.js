@@ -7,7 +7,7 @@ const errorMiddleware = require("./middlewares/error.middleware");
 const app = express();
 app.use(express.json());
 
-app.use("/internal", routes);
+app.use("/ai", routes);
 
 app.get("/health", (_, res) => {
   res.json({ status: "AI service healthy" });

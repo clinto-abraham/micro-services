@@ -1,5 +1,14 @@
+"use strict";
+
 module.exports = {
-  defaultProvider: "openai",
+  defaultProvider: "gemini", // 🔁 switch here
   maxTokensPerRequest: 4000,
   timeoutMs: 30_000
 };
+
+
+// module.exports = {
+//   defaultProvider: "openai",
+//   maxTokensPerRequest: 4000,
+//   timeoutMs: 30_000
+// };

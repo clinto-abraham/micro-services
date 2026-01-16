@@ -22,6 +22,14 @@ const PORT = process.env.PORT || 3000;
 const SERVICE_NAME   = process.env.SERVICE_NAME || "sql-service"
 
 // # ----------------------------------
+// # REDIS
+// # ----------------------------------
+const REDIS_HOST = process.env.REDIS_HOST;
+const REDIS_PORT = process.env.REDIS_PORT;
+const REDIS_URL = process.env.REDIS_URL;
+const REDIS_DB = process.env.REDIS_DB;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+// # ----------------------------------
 // # Database
 // # ----------------------------------
 const DB_HOST = process.env.DB_HOST;
@@ -72,7 +80,12 @@ module.exports = {
   BCRYPT_SALT_ROUNDS,
   TWO_FA_ISSUER,
   RATE_LIMIT_MAX,
-  RATE_LIMIT_WINDOW
+  RATE_LIMIT_WINDOW,
+  REDIS_HOST,
+  REDIS_PORT,
+  REDIS_URL,
+  REDIS_DB,
+  REDIS_PASSWORD,
 };
 
 
