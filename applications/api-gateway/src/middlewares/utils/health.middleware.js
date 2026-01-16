@@ -2,7 +2,7 @@
 // Gateway should know when services are DOWN.
 
 const axios = require("axios");
-const services = require("../docs/services");
+const services = require("../../docs/services");
 
 const healthCache = {};
 
