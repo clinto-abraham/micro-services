@@ -1,7 +1,9 @@
 const liveService = require("./live.service");
 const readyService = require("./ready.service");
 const warmupService = require("./warmup.service");
-const { validateHealth } = require("../../validation");
+const { validateHealth } = require("../../validations/health/health.validation");
+
+
 
 const check = async ({ startTime }) => {
   const state = warmupService.getState();
