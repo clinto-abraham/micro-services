@@ -1,0 +1,13 @@
+// constants/errorHttpMap.js
+module.exports = {
+  INVALID_PAYLOAD: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+
+  USER_ALREADY_EXISTS: 409,
+  USER_NOT_FOUND: 404,
+
+  RATE_LIMITED: 429,
+
+  INTERNAL_ERROR: 500
+};

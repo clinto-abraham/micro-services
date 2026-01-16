@@ -1,7 +1,7 @@
 # micro-services.backend.ciyo.in
 This is a combination of node and go-lang backend programms coupled around with each micro-services
 
-# Microservices (gateway, user-service, api-service, ai-service, cron-service)
+# Microservices (gateway, user-service, api-service, ai-service, cron-service, mongo-service, notification-service)
 
 ## Quick local setup (native) — recommended for Mac M1
 
@@ -85,6 +85,7 @@ pm2 start ecosystem.config.js --only websocket-service --env production
 pm2 start ecosystem.config.js --only cron-service --env production
 pm2 start ecosystem.config.js --only payment-service --env production
 pm2 start ecosystem.config.js --only mail-service --env production
+pm2 start ecosystem.config.js --only notification-service --env production
 
 
 api-gateway
@@ -95,3 +96,9 @@ websocket-service
 cron-service
 payment-service
 mail-service
+notification-service
+
+14. Creating new files and scaffolding from scratch for testing purpose.
+    ls -l infra/create_microservices_structure.sh
+    chmod +x infra/create_microservices_structure.sh
+    ./infra/create_microservices_structure.sh
