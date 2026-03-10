@@ -1,67 +1,62 @@
-"use strict";
+'use strict';
 
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
 
-const setupSwagger = require("./docs/swagger");
-const routes = require("./routes");
+const setupSwagger = require('./docs/swagger');
+const routes = require('./routes');
 
-const httpRequestLoggerMiddleware = require("./middlewares/utils/http.requestLogger.middleware");
-const requestIdMiddleware = require("./middlewares/utils/requestId.middleware");
-const healthMiddleware = require("./middlewares/utils/health.middleware");
-const notFoundMiddleware = require("./middlewares/utils/notfound.middleware");
-const errorMiddleware = require("./middlewares/utils/error.middleware");
-const rejectGetBody = require("./middlewares/gateway/rejectGetBody");
+const httpRequestLoggerMiddleware = require('./middlewares/utils/http.requestLogger.middleware');
+const requestIdMiddleware = require('./middlewares/utils/requestId.middleware');
+// const healthMiddleware = require('./middlewares/utils/health.middleware');
+const notFoundMiddleware = require('./middlewares/utils/notfound.middleware');
+const errorMiddleware = require('./middlewares/utils/error.middleware');
+const rejectGetBody = require('./middlewares/gateway/rejectGetBody');
 
 const app = express();
 
 /**
  * 1️⃣ CORS FIRST
  */
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Request-ID"]
-}));
 
-app.use(cors({
-  origin: ["http://localhost:5173"], // React app
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization"
-  ],
-  exposedHeaders: [
-    "x-request-id"
-  ]
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'https://scan.ciyo.in',
+        'https://scanner-nmg.vercel.app',
+      ];
 
+      // Allow server-to-server / curl / postman
+      if (!origin) return callback(null, true);
 
-app.options("*", cors());
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-API-Key, X-Signature, X-Timestamp, X-Request-Id"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-  );
+      return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Signature',
+      'X-Internal-Secret',
+      'X-Request-Id',
+    ],
+    exposedHeaders: ['X-Request-Id'],
+    optionsSuccessStatus: 204,
+  })
+);
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  next();
-});
-
+app.options('*', cors());
 
 /**
  * 2️⃣ Body parsing
  */
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(rejectGetBody);
@@ -74,7 +69,7 @@ app.use(httpRequestLoggerMiddleware);
 /**
  * 4️⃣ Health (gateway + downstream)
  */
-app.use(healthMiddleware);
+// app.use(healthMiddleware);
 
 /**
  * 5️⃣ Docs
@@ -84,7 +79,7 @@ setupSwagger(app);
 /**
  * 6️⃣ API routes (ALL security happens here)
  */
-app.use("/api", routes);
+app.use('/api', routes);
 
 /**
  * 7️⃣ Errors
@@ -93,8 +88,6 @@ app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
 module.exports = app;
-
-
 
 // "use strict";
 
@@ -113,10 +106,8 @@ module.exports = app;
 // const notFoundMiddleware = require("./middlewares/notfound.middleware");
 // const errorMiddleware = require("./middlewares/error.middleware");
 
-
 // const httpRequestLoggerMiddleware = require("./middlewares/http.requestLogger.middleware");
 // const requestIdMiddleware = require("./middlewares/requestId.middleware");
-
 
 // const app = express();
 
@@ -132,7 +123,6 @@ module.exports = app;
 // // 2️⃣ Body parser AFTER CORS
 // app.use(express.json({ limit: "1mb" }));
 // app.use(express.urlencoded({ extended: true }));
-
 
 // app.use(spikeProtector);
 // app.use(rateLimiter);
@@ -151,4 +141,3 @@ module.exports = app;
 // app.use(errorMiddleware);
 
 // module.exports = app;
-

@@ -1,26 +1,26 @@
-"use strict";
+'use strict';
 
-const { default: mongoose } = require("./mongoose");
-
+const { default: mongoose } = require('./mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    const localDB = 'mongodb://127.0.0.1:27017/event_management';
+    console.log(process.env.MONGO_URI, 'process.env.MONGO_URI');
+    await mongoose.connect(localDB, {
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
     });
 
-    console.log("✅ MongoDB connected");
+    console.log('✅ MongoDB connected');
   } catch (error) {
-    console.error("❌ MongoDB connection failed:", error.message);
+    console.error('❌ MongoDB connection failed:', error.message);
     process.exit(1); // stop app if DB fails
   }
 };
 
 // Optional connection listeners
-mongoose.connection.on("disconnected", () => {
-  console.warn("⚠️ MongoDB disconnected");
+mongoose.connection.on('disconnected', () => {
+  console.warn('⚠️ MongoDB disconnected');
 });
 
 module.exports = connectDB;
-

@@ -1,15 +1,21 @@
-"use strict";
+'use strict';
 
-module.exports = function internalAuth(req, res, next) {
-  const secret = req.headers["x-internal-secret"];
-  console.log(process.env.INTERNAL_SERVICE_SECRET, 5)
-  console.log(secret, 6)
+module.exports = (req, res, next) => {
+  const receivedSecret = req.headers['x-internal-secret'];
 
-  if (!secret || secret !== process.env.INTERNAL_SERVICE_SECRET) {
+  if (!receivedSecret) {
     return res.status(403).json({
       success: false,
-      errorCode: "FORBIDDEN_INTERNAL_CALL",
-      message: "Direct access to service is not allowed"
+      errorCode: 'FORBIDDEN_INTERNAL_CALL',
+      message: 'Missing internal secret',
+    });
+  }
+
+  if (receivedSecret !== process.env.INTERNAL_SERVICE_SECRET) {
+    return res.status(403).json({
+      success: false,
+      errorCode: 'FORBIDDEN_INTERNAL_CALL',
+      message: 'Invalid internal secret',
     });
   }
 
