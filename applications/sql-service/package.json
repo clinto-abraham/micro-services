@@ -12,7 +12,10 @@
     "db:migrate:test": "NODE_ENV=test npx sequelize-cli db:migrate",
     "db:migrate:prod": "NODE_ENV=production npx sequelize-cli db:migrate",
     "db:seed:dev": "NODE_ENV=development npx sequelize-cli db:seed:all",
-    "db:seed:undo": "npx sequelize-cli db:seed:undo:all"
+    "db:seed:undo": "npx sequelize-cli db:seed:undo:all",
+    "pg-sync": "NODE_ENV=development node src/db/sync.js",
+    "pg-sync:test": "NODE_ENV=test node src/db/sync.js",
+    "pg-sync:prod": "NODE_ENV=production node src/db/sync.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

@@ -7,6 +7,8 @@ const userValidation = require("../validations/user.validation");
 const { healthCheck } = require("../controllers/health.controller");
 const healthAuth = require("../middlewares/healthAuth");
 const healthRateLimit = require("../middlewares/healthRateLimit");
+const internalAuth = require("../middlewares/internalAuth");
+const { getAppConfig } = require("../controllers/appConfig.controller");
 
 const router = express.Router();
 
@@ -16,6 +18,13 @@ const router = express.Router();
  * ---------------------------
  */
 router.get("/health", healthAuth, healthRateLimit, healthCheck);
+
+/**
+ * ---------------------------
+ * Internal routing config (Gateway)
+ * ---------------------------
+ */
+router.get("/internal/app-configs/:appName", internalAuth, getAppConfig);
 
 
 /**

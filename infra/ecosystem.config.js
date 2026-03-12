@@ -25,7 +25,7 @@ const PROD_CREDENTIAL = {
   // ===============================
   API_GATEWAY_MICROSERVICE_URL: 'http://localhost:2000',
   SQL_MICROSERVICE_URL: 'http://localhost:3000/sql',
-  MONGO_MICROSERVICE_URL: 'http://localhost:4000/mongo',
+  MONGO_MICROSERVICE_URL: 'http://localhost:1111/mongo',
   AI_MICROSERVICE_URL: 'http://localhost:5550/ai',
   WEBSOCKET_MICROSERVICE_URL: 'http://localhost:6000/websocket',
   CRON_MICROSERVICE_URL: 'http://localhost:7000/cron',
@@ -38,7 +38,7 @@ const PROD_CREDENTIAL = {
   // ===============================
   API_GATEWAY_MICROSERVICE_PORT: 2000,
   SQL_MICROSERVICE_PORT: 3000,
-  MONGO_MICROSERVICE_PORT: 4000,
+  MONGO_MICROSERVICE_PORT: 1111,
   AI_MICROSERVICE_PORT: 5550,
   WEBSOCKET_MICROSERVICE_PORT: 6000,
   CRON_MICROSERVICE_PORT: 7000,
@@ -153,7 +153,7 @@ module.exports = {
       },
       env_production: {
         SERVICE_NAME: 'MONGO_MICROSERVICE',
-        PORT: 4000,
+        PORT: 1111,
         REDIS_DB: 2,
         ...PROD_CREDENTIAL,
       },

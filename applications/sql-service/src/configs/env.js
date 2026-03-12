@@ -60,6 +60,10 @@ const TWO_FA_ISSUER  = process.env.TWO_FA_ISSUER || "CIYO_SQL_SERVICE"
 const RATE_LIMIT_MAX = process.env.RATE_LIMIT_MAX || "100"
 const RATE_LIMIT_WINDOW  = process.env.RATE_LIMIT_WINDOW || "15"
 
+// # ----------------------------------
+// # Internal service auth (Gateway → Service)
+// # ----------------------------------
+const INTERNAL_SERVICE_SECRET = process.env.INTERNAL_SERVICE_SECRET;
 
 
 console.log(`✅ Loaded env file: ${envFile}`, SERVICE_NAME,  PORT,NODE_ENV);
@@ -69,6 +73,7 @@ module.exports = {
   NODE_ENV,
   PORT,
   SERVICE_NAME,
+  INTERNAL_SERVICE_SECRET,
   DB_HOST,
   DB_PORT,
   DB_NAME,

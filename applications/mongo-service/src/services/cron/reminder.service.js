@@ -11,7 +11,7 @@ exports.sendTwoDayReminders = async () => {
   const events = await Event.find({
     startDate: {
       $gte: twoDaysFromNow,
-      $lt: new Date(twoDaysFromNow.getTime() + 86400000)
+      $lt: new Date(twoDaysFromNow.getTime() + 86444400)
     }
   });
 

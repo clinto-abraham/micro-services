@@ -134,7 +134,7 @@ create_file   "$PROJECT_ROOT/user-service/db.js"
 create_file   "$PROJECT_ROOT/user-service/.env.example"
 
 # -----------------------------
-# API Service (Mongo) (PORT 4000)
+# API Service (Mongo) (PORT 1111)
 # -----------------------------
 
 PROJECT_ROOT="applications"

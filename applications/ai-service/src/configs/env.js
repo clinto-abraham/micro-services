@@ -62,7 +62,7 @@ const OPENAI_API_KEY =  process.env.OPENAI_API_KEY;
 
 const API_GATEWAY_MICROSERVICE_URL= process.env.API_GATEWAY_MICROSERVICE_URL || "http://localhost:2000"
 const SQL_MICROSERVICE_URL= process.env.SQL_MICROSERVICE_URL || "http://localhost:3000"
-const MONGO_MICROSERVICE_URL=process.env.MONGO_MICROSERVICE_URL || "http://localhost:4000"
+const MONGO_MICROSERVICE_URL=process.env.MONGO_MICROSERVICE_URL || "http://localhost:4444"
 const AI_MICROSERVICE_URL=process.env.AI_MICROSERVICE_URL || "http://localhost:5000"
 const WEBSOCKET_MICROSERVICE_URL=process.env.WEBSOCKET_MICROSERVICE_URL || "http://localhost:6000"
 const CRON_MICROSERVICE_URL=process.env.CRON_MICROSERVICE_URL || "http://localhost:7000"

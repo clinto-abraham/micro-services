@@ -22,7 +22,7 @@ console.log(
 const PORT = process.env.PORT || 3000;
 const SERVICE_NAME   = process.env.MICRO_SERVICE_NAME || "mail-service"
 const SQL_SERVICE_BASE_URL = process.env.SQL_SERVICE_BASE_URL || "http://localhost:3000/postgres"
-const MONGO_SERVICE_BASE_URL = process.env.MONGO_SERVICE_BASE_URL || "http://localhost:4000/mongodb"
+const MONGO_SERVICE_BASE_URL = process.env.MONGO_SERVICE_BASE_URL || "http://localhost:4444/mongodb"
 
 // # ----------------------------------
 // # Database

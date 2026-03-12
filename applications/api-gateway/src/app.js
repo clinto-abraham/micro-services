@@ -42,6 +42,7 @@ app.use(
     allowedHeaders: [
       'Content-Type',
       'Authorization',
+      'X-App-Name',
       'X-Signature',
       'X-Internal-Secret',
       'X-Request-Id',

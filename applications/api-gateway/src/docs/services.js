@@ -6,7 +6,7 @@ module.exports = [
   },
   {
     name: "Mongo Service",
-    url: "http://127.0.0.1:4000/openapi.json",
+    url: "http://127.0.0.1:4444/openapi.json",
     basePath: "/mongo"
   },
   {

@@ -2,7 +2,7 @@
 
 const { errorResponse } = require("../../utils/response.util");
 
-const MAX_PROMPT_LENGTH = 4000;
+const MAX_PROMPT_LENGTH = 4444;
 const BLOCKED_PATTERNS = [
   /ignore previous instructions/i,
   /system prompt/i,

@@ -9,7 +9,7 @@ const { SQL_MICROSERVICE_PORT, MONGO_MICROSERVICE_PORT, AI_MICROSERVICE_PORT, WE
 
 const SERVICES = [
   { name: "sql-microservice", ext: "/sql", port: SQL_MICROSERVICE_PORT || 3000 },
-  { name: "mongo-microservice", ext: "/mongo", port: MONGO_MICROSERVICE_PORT || 4000 },
+  { name: "mongo-microservice", ext: "/mongo", port: MONGO_MICROSERVICE_PORT || 4444 },
   { name: "ai-microservice", ext: "/ai", port: AI_MICROSERVICE_PORT || 5550 },
   { name: "websocket-microservice", ext: "/socket", port: WEBSOCKET_MICROSERVICE_PORT || 6000 },
   { name: "cron-microservice", ext: "/cron", port: CRON_MICROSERVICE_PORT || 7000 },

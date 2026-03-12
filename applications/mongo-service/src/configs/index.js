@@ -9,7 +9,7 @@ console.log(process.env.MONGO_URI, "process.env.MONGO_URI")
 module.exports = {
   app: {
     env: process.env.NODE_ENV || "development",
-    port: process.env.PORT || 4000
+    port: process.env.PORT || 4444
   },
 
   db: {

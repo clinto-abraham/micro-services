@@ -20,7 +20,7 @@ This is a combination of node and go-lang backend programms coupled around with 
 Ports:
 - API-Gateway: 2000
 - User (Postgres): 3000
-- Data (Mongo): 4000
+- Data (Mongo): 4444
 - AI: 5000
 - WebSocket: 6000
 - Cron: 7000

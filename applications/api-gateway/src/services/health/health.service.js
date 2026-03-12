@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const SERVICES = [
   { name: "sql-microservice", port: 3000 },
-  { name: "mongo-microservice", port: 4000 },
+  { name: "mongo-microservice", port: 1111 },
   { name: "ai-microservice", port: 5550 },
   { name: "websocket-microservice", port: 6000 },
   { name: "cron-microservice", port: 7000 },

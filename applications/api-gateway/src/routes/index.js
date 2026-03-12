@@ -8,6 +8,7 @@ const {
   circuitBreakerController,
 } = require('../controllers/circuitBreaker/circuitBreaker.controller');
 const customProxy = require('../controllers/proxy/customProxy');
+const appNameProxy = require('../controllers/proxy/appNameProxy');
 // Core middlewares
 const requestContext = require('../middlewares/context/requestContext.middleware');
 const authenticate = require('../middlewares/auth/auth.middleware');
@@ -117,6 +118,20 @@ router.use(
   validateSchema(envelopeSchema),
   hmacSigner,
   customProxy('notification-service')
+);
+
+/**
+ * APP ROUTING (dynamic)
+ * Frontends call the gateway at `/api/*` and include `X-App-Name`.
+ * Gateway asks SQL service for the app config and proxies to the configured backend port.
+ */
+router.use(
+  '/',
+  requestContext,
+  rateLimit({ limit: 120, windowSeconds: 60 }),
+  fingerprint,
+  threatScore,
+  appNameProxy()
 );
 
 module.exports = router;

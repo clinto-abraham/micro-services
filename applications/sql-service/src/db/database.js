@@ -9,6 +9,14 @@ const {
   DB_PASSWORD
 } = require("../configs/env");
 
+// Fallback DB names when .env file is missing or DB_NAME not set (e.g. no .env.production)
+const DEFAULT_DB_NAMES = {
+  development: "database_development",
+  test: "database_test",
+  stage: "database_stage",
+  production: "database_production",
+};
+
 const common = {
   host: DB_HOST || "127.0.0.1",
   dialect: "postgres",
@@ -23,36 +31,44 @@ const common = {
   }
 };
 
+function getDatabase(env) {
+  return DB_NAME || DEFAULT_DB_NAMES[env] || DEFAULT_DB_NAMES.development;
+}
+
 module.exports = {
   development: {
     ...common,
+    username: DB_USER,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: DB_NAME,
+    database: getDatabase("development"),
     logging: logger.warn, // show SQL in dev (optional)
   },
 
   test: {
     ...common,
+    username: DB_USER,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: DB_NAME,
-    logging: logger.info, 
+    database: getDatabase("test"),
+    logging: logger.info,
   },
 
   stage: {
     ...common,
+    username: DB_USER,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: DB_NAME,
-    logging: logger.debug, 
+    database: getDatabase("stage"),
+    logging: logger.debug,
   },
 
   production: {
     ...common,
+    username: DB_USER,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: DB_NAME,
+    database: getDatabase("production"),
     logging: false, // disable logs in production
   },
 };

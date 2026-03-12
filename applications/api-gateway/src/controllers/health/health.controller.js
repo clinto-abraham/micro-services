@@ -6,7 +6,7 @@ const redis = require("../../storage/redis");
 
 const SERVICES = [
   { name: "sql-service", url: "http://127.0.0.1:3000/health" },
-  { name: "mongo-service", url: "http://127.0.0.1:4000/health" },
+  { name: "mongo-service", url: "http://127.0.0.1:4444/health" },
   { name: "ai-service", url: "http://127.0.0.1:5550/health" },
   { name: "payment-service", url: "http://127.0.0.1:8000/health" },
   { name: "mail-service", url: "http://127.0.0.1:9000/health" }

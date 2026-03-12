@@ -4,7 +4,7 @@ require("./src/configs/env");
 const app = require("./src/app");
 const { default: mongoose } = require("./src/db/mongoose");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4444;
 
 
 const server = app.listen(PORT, () => {

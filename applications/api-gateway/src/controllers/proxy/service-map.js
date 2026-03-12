@@ -9,7 +9,7 @@ module.exports = {
 
   "mongo-service": {
     name: "mongo-service",
-    target: `http://127.0.0.1:${MONGO_MICROSERVICE_PORT || 4000}`,
+    target: `http://127.0.0.1:${MONGO_MICROSERVICE_PORT || 4444}`,
     publicPrefix: "mongo"
   },
 
